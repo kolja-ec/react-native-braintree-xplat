@@ -23,7 +23,7 @@ Pod::Spec.new do |s|
   s.dependency 'Braintree/PayPal'
   s.dependency 'Braintree/Apple-Pay', '4.11.0'
   # s.dependency 'Braintree/3D-Secure' // deprecated
-  s.dependency 'Braintree/PaymentFlow' // replacement
+  s.dependency 'Braintree/PaymentFlow'
   s.dependency 'Braintree/DataCollector'
   s.dependency 'React'
 end
