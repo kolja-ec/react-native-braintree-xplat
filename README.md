@@ -1,5 +1,7 @@
 # react-native-braintree-xplat
 
+Warning: This Version of react-native-braintree-xplat only supports the following methods: getDeviceData, getCardNonce (async fn), setup, setupWithURLScheme because Apple does not support UiWebView starting from April 2020 and all the removed functions use Braintree3DSecure which sadly uses deprecated UiWebView apis.
+
 [![npm version](https://badge.fury.io/js/react-native-braintree-xplat.svg)](https://badge.fury.io/js/react-native-braintree-xplat)
 
 An effort to merge react-native-braintree and react-native-braintree-android

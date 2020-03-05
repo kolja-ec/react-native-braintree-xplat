@@ -5,8 +5,6 @@
 import { NativeModules, processColor } from "react-native";
 import { mapParameters } from "./utils";
 
-import type { CardParameters } from "./types";
-
 const RCTBraintree = NativeModules.Braintree;
 
 var Braintree = {
@@ -26,34 +24,7 @@ var Braintree = {
     });
   },
 
-  showPaymentViewController(config = {}) {
-    var options = {
-      tintColor: processColor(config.tintColor),
-      bgColor: processColor(config.bgColor),
-      barBgColor: processColor(config.barBgColor),
-      barTintColor: processColor(config.barTintColor),
-      callToActionText: config.callToActionText,
-      title: config.title,
-      description: config.description,
-      amount: config.amount,
-      threeDSecure: config.threeDSecure,
-    };
-    return new Promise(function(resolve, reject) {
-      RCTBraintree.showPaymentViewController(options, function(err, nonce) {
-        nonce != null ? resolve(nonce) : reject(err);
-      });
-    });
-  },
-
-  showPayPalViewController() {
-    return new Promise(function(resolve, reject) {
-      RCTBraintree.showPayPalViewController(function(err, nonce) {
-        nonce != null ? resolve(nonce) : reject(err);
-      });
-    });
-  },
-
-  async getCardNonce(parameters: CardParameters = {}) {
+  async getCardNonce(parameters = {}) {
     try {
       const nonce = await RCTBraintree.getCardNonce(mapParameters(parameters));
 
@@ -63,6 +34,33 @@ var Braintree = {
     }
   },
 
+  // showPaymentViewController(config = {}) {
+  //   var options = {
+  //     tintColor: processColor(config.tintColor),
+  //     bgColor: processColor(config.bgColor),
+  //     barBgColor: processColor(config.barBgColor),
+  //     barTintColor: processColor(config.barTintColor),
+  //     callToActionText: config.callToActionText,
+  //     title: config.title,
+  //     description: config.description,
+  //     amount: config.amount,
+  //     threeDSecure: config.threeDSecure,
+  //   };
+  //   return new Promise(function(resolve, reject) {
+  //     RCTBraintree.showPaymentViewController(options, function(err, nonce) {
+  //       nonce != null ? resolve(nonce) : reject(err);
+  //     });
+  //   });
+  // },
+
+  // showPayPalViewController() {
+  //   return new Promise(function(resolve, reject) {
+  //     RCTBraintree.showPayPalViewController(function(err, nonce) {
+  //       nonce != null ? resolve(nonce) : reject(err);
+  //     });
+  //   });
+  // },
+
   getDeviceData(options = {}) {
     return new Promise(function(resolve, reject) {
       RCTBraintree.getDeviceData(options, function(err, deviceData) {
@@ -71,13 +69,13 @@ var Braintree = {
     });
   },
 
-  showApplePayViewController(options = {}) {
-    return new Promise(function(resolve, reject) {
-      RCTBraintree.showApplePayViewController(options, function(err, nonce) {
-        nonce != null ? resolve(nonce) : reject(err);
-      });
-    });
-  },
+  // showApplePayViewController(options = {}) {
+  //   return new Promise(function(resolve, reject) {
+  //     RCTBraintree.showApplePayViewController(options, function(err, nonce) {
+  //       nonce != null ? resolve(nonce) : reject(err);
+  //     });
+  //   });
+  // },
 };
 
 module.exports = Braintree;
